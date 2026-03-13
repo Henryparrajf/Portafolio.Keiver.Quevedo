@@ -17,22 +17,129 @@
   --easing: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-/* Tema claro */
+/* Tema claro - Mejorado con mejor contraste */
 html[data-theme='light'] {
-  --bg: #f8f9fa;
-  --fg: #1a1d29;
-  --muted: rgba(26, 29, 41, 0.72);
-  --surface: rgba(0, 0, 0, 0.04);
-  --surface-strong: rgba(0, 0, 0, 0.08);
-  --border: rgba(0, 0, 0, 0.12);
-  --shadow: 0 20px 70px rgba(0, 0, 0, 0.15);
+  --bg: #ffffff;
+  --fg: #0f1419;
+  --muted: rgba(15, 20, 25, 0.75);
+  --surface: rgba(0, 0, 0, 0.06);
+  --surface-strong: rgba(0, 0, 0, 0.12);
+  --border: rgba(0, 0, 0, 0.15);
+  --shadow: 0 20px 70px rgba(0, 0, 0, 0.12);
 }
 
 html[data-theme='light'] body {
-  background: radial-gradient(circle at 15% 20%, rgba(247, 90, 168, 0.12), transparent 55%),
-    radial-gradient(circle at 70% 20%, rgba(55, 211, 255, 0.12), transparent 50%),
-    radial-gradient(circle at 30% 80%, rgba(156, 92, 255, 0.08), transparent 60%),
+  background: radial-gradient(circle at 15% 20%, rgba(247, 90, 168, 0.08), transparent 55%),
+    radial-gradient(circle at 70% 20%, rgba(55, 211, 255, 0.08), transparent 50%),
+    radial-gradient(circle at 30% 80%, rgba(156, 92, 255, 0.05), transparent 60%),
     var(--bg);
+}
+
+/* Ajustes específicos para tema claro */
+html[data-theme='light'] .topbar {
+  background: rgba(255, 255, 255, 0.85);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+html[data-theme='light'] .label {
+  color: rgba(0, 0, 0, 0.55);
+}
+
+html[data-theme='light'] .subtitle {
+  color: rgba(0, 0, 0, 0.75);
+}
+
+html[data-theme='light'] .section__header p {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+html[data-theme='light'] .card {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+html[data-theme='light'] .card--elevated {
+  background: rgba(255, 255, 255, 0.95);
+}
+
+html[data-theme='light'] .card__body {
+  color: rgba(0, 0, 0, 0.75);
+}
+
+html[data-theme='light'] .tag {
+  background: rgba(0, 0, 0, 0.08);
+  color: rgba(0, 0, 0, 0.85);
+}
+
+html[data-theme='light'] .badge {
+  background: rgba(0, 0, 0, 0.06);
+  color: rgba(0, 0, 0, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+html[data-theme='light'] .btn-outline {
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+html[data-theme='light'] .btn-outline:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+html[data-theme='light'] .form {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+html[data-theme='light'] .form__label {
+  color: rgba(0, 0, 0, 0.75);
+}
+
+html[data-theme='light'] .form__input {
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  color: var(--fg);
+}
+
+html[data-theme='light'] .form__input:focus {
+  background: rgba(255, 255, 255, 1);
+  border-color: var(--accent);
+}
+
+html[data-theme='light'] .stat__label {
+  color: rgba(0, 0, 0, 0.75);
+}
+
+html[data-theme='light'] .company-card {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+html[data-theme='light'] .company-card__name {
+  color: rgba(0, 0, 0, 0.85);
+}
+
+html[data-theme='light'] .gallery-card {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+html[data-theme='light'] .gallery-card__label {
+  color: rgba(0, 0, 0, 0.85);
+}
+
+html[data-theme='light'] .footer {
+  color: rgba(0, 0, 0, 0.6);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  background: rgba(0, 0, 0, 0.02);
+}
+
+html[data-theme='light'] .footer__meta {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+html[data-theme='light'] .footer__credits {
+  color: rgba(0, 0, 0, 0.5);
 }
 
 html,
@@ -688,6 +795,313 @@ button:focus {
   .contact__aside {
     position: static;
     top: auto;
+  }
+}
+
+/* Responsive para tablets (768px) */
+@media (max-width: 768px) {
+  .topbar {
+    padding: 0.875rem 1rem;
+  }
+
+  .brand {
+    font-size: 1.1rem;
+  }
+
+  .nav {
+    gap: 0.5rem;
+  }
+
+  .nav a {
+    font-size: 0.875rem;
+    padding: 0.5rem 0.7rem;
+  }
+
+  .hero {
+    padding: 3rem 1rem 2rem;
+  }
+
+  .section {
+    padding: 2.5rem 1rem;
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .skill-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.75rem;
+  }
+
+  .company-card {
+    min-width: 200px;
+  }
+
+  .gallery-card {
+    min-width: 240px;
+  }
+}
+
+/* Responsive para móviles (480px) */
+@media (max-width: 480px) {
+  .topbar {
+    padding: 0.75rem 0.875rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .brand {
+    font-size: 1rem;
+  }
+
+  .nav {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    gap: 0.25rem;
+  }
+
+  .nav a {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.6rem;
+  }
+
+  .btn-ghost {
+    padding: 0.5rem 0.7rem;
+    font-size: 1.2rem;
+  }
+
+  .hero {
+    padding: 2rem 0.875rem 1.5rem;
+  }
+
+  .hero__content {
+    gap: 2rem;
+  }
+
+  .title {
+    font-size: clamp(1.8rem, 8vw, 2.4rem);
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 0.875rem 1.2rem;
+  }
+
+  .avatar {
+    width: min(280px, 100%);
+  }
+
+  .stat {
+    padding: 1rem 1.2rem;
+  }
+
+  .stat__value {
+    font-size: 2.2rem;
+  }
+
+  .section {
+    padding: 2rem 0.875rem;
+  }
+
+  .section__header h2 {
+    font-size: 1.75rem;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+
+  .card__header h3 {
+    font-size: 1.25rem;
+  }
+
+  .skill-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .badge {
+    padding: 0.6rem 0.875rem;
+    font-size: 0.875rem;
+  }
+
+  .company-card {
+    min-width: 180px;
+    padding: 1rem;
+  }
+
+  .gallery-card {
+    min-width: 220px;
+  }
+
+  .form {
+    padding: 1.5rem;
+  }
+
+  .footer__info {
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+}
+
+/* Responsive para móviles pequeños (320px) */
+@media (max-width: 360px) {
+  :root {
+    --text-lg: 1rem;
+    --text-md: 0.9rem;
+  }
+
+  .topbar {
+    padding: 0.625rem 0.75rem;
+  }
+
+  .brand {
+    font-size: 0.95rem;
+  }
+
+  .nav a {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.5rem;
+  }
+
+  .btn-ghost {
+    padding: 0.45rem 0.6rem;
+    font-size: 1.1rem;
+  }
+
+  .hero {
+    padding: 1.5rem 0.75rem 1.25rem;
+  }
+
+  .title {
+    font-size: clamp(1.5rem, 10vw, 2rem);
+    line-height: 1.1;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .btn {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .avatar {
+    width: min(240px, 100%);
+  }
+
+  .stat {
+    padding: 0.875rem 1rem;
+  }
+
+  .stat__value {
+    font-size: 1.875rem;
+  }
+
+  .stat__label {
+    font-size: 0.8rem;
+  }
+
+  .section {
+    padding: 1.75rem 0.75rem;
+  }
+
+  .section__header h2 {
+    font-size: 1.5rem;
+  }
+
+  .section__header p {
+    font-size: 0.875rem;
+  }
+
+  .card {
+    padding: 1.25rem;
+  }
+
+  .card__header h3 {
+    font-size: 1.125rem;
+  }
+
+  .card__body {
+    font-size: 0.875rem;
+  }
+
+  .tag {
+    font-size: 0.75rem;
+    padding: 0.35rem 0.6rem;
+  }
+
+  .badge {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8rem;
+  }
+
+  .company-card {
+    min-width: 160px;
+    padding: 0.875rem;
+  }
+
+  .company-card__logo {
+    max-height: 56px;
+  }
+
+  .company-card__name {
+    font-size: 0.875rem;
+  }
+
+  .gallery-card {
+    min-width: 200px;
+  }
+
+  .gallery-card__label {
+    padding: 0.875rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .form {
+    padding: 1.25rem;
+    gap: 0.875rem;
+  }
+
+  .form__label {
+    font-size: 0.85rem;
+  }
+
+  .form__input {
+    padding: 0.75rem 0.875rem;
+    font-size: 0.875rem;
+  }
+
+  .footer {
+    padding: 2rem 0.75rem;
+  }
+
+  .footer__avatar {
+    width: 56px;
+    height: 56px;
+  }
+
+  .footer__name {
+    font-size: 0.95rem;
+  }
+
+  .footer__meta,
+  .footer__credits,
+  .footer__small {
+    font-size: 0.8rem;
   }
 }
 

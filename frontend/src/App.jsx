@@ -226,15 +226,13 @@ export default function App() {
               <img src="/avatar.svg" alt="Avatar de Keiver Quevedo" loading="lazy" />
             </div>
             <div>
-              <p className="footer__name">Keiver Quevedo</p>
+              <p className="footer__name">Henry Parra .JF</p>
               <p className="footer__meta">
-          Desarrollador• versión <span className="footer__version">{version}</span>
+          Full Stack Developer • versión <span className="footer__version">{version}</span>
               </p>
             </div>
           </div>
 
-          <p className="footer__credits">Imágenes de referencia: recursos libres (Open Source SVG).</p>
-          <p className="footer__small">Reemplaza los datos de contacto y las imágenes con tu contenido real.</p>
         </footer>
       </main>
     </div>

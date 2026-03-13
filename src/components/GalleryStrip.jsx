@@ -1,8 +1,8 @@
 const galleryItems = [
-  { title: 'Dashboard financiero', src: '/gallery/dashboard.svg' },
-  { title: 'Modelo de flujo de caja', src: '/gallery/flow.svg' },
-  { title: 'Automatización de procesos', src: '/gallery/automation.svg' },
-  { title: 'Análisis tributario', src: '/gallery/tax.svg' },
+  { title: 'Dashboard financiero', src: '/gallery/dashboard.jpg' },
+  { title: 'Modelo de flujo de caja', src: '/gallery/flow.jpg' },
+  { title: 'Automatización de procesos', src: '/gallery/automation.jpg' },
+  { title: 'Análisis tributario', src: '/gallery/tax.jpg' },
 ];
 
 export default function GalleryStrip() {

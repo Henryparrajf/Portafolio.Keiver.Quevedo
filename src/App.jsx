@@ -225,7 +225,7 @@ export default function App() {
               <div className="card card--elevated">
                 <h3>Contacto directo</h3>
                 <p>
-                  <strong>Email:</strong> <a href="mailto:contacto@keiverquevedo.com">contacto@keiverquevedo.com</a>
+                  <strong>Email:</strong> <a href="mailto:keiver30@gmail.com">keiver30@gmail.com</a>
                 </p>
                 <p>
                   <strong>LinkedIn:</strong>{' '}
@@ -234,9 +234,9 @@ export default function App() {
                   </a>
                 </p>
                 <p>
-                  <strong>GitHub:</strong>{' '}
-                  <a href="https://github.com" target="_blank" rel="noreferrer">
-                    github.com/keiverquevedo
+                  <strong>Facebook:</strong>{' '}
+                  <a href="https://facebook.com/keiver30" target="_blank" rel="noreferrer">
+                    facebook.com/keiver30
                   </a>
                 </p>
               </div>

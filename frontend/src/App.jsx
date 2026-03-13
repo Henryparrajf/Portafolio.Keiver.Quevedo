@@ -228,7 +228,7 @@ export default function App() {
             <div>
               <p className="footer__name">Keiver Quevedo</p>
               <p className="footer__meta">
-                Portafolio SPA • versión <span className="footer__version">{version}</span>
+          Desarrollador• versión <span className="footer__version">{version}</span>
               </p>
             </div>
           </div>

@@ -5,5 +5,9 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 5173
+  },
+  build: {
+    // Build output goes to the repo root so Vercel can serve it consistently
+    outDir: '../dist'
   }
 });

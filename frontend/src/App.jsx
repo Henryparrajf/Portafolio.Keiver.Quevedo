@@ -223,12 +223,12 @@ export default function App() {
         <footer className="footer">
           <div className="footer__info">
             <div className="footer__avatar">
-              <img src="/avatar.svg" alt="Avatar de Keiver Quevedo" loading="lazy" />
+              <img src="/avatar.svg" alt=" Full Stack Developer Henry Parra .JF" loading="lazy" />
             </div>
             <div>
               <p className="footer__name">Henry Parra .JF</p>
               <p className="footer__meta">
-          Full Stack Developer • versión <span className="footer__version">{version}</span>
+        Full Stack Developer  • versión <span className="footer__version">{version}</span>
               </p>
             </div>
           </div>

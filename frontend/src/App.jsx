@@ -223,7 +223,7 @@ export default function App() {
         <footer className="footer">
           <div className="footer__info">
             <div className="footer__avatar">
-              <img src="/avatar.svg" alt=" Full Stack Developer Henry Parra .JF" loading="lazy" />
+              <img src="\public\desarollador.png" alt=" Full Stack Developer Henry Parra .JF" loading="lazy" />
             </div>
             <div>
               <p className="footer__name">Henry Parra .JF</p>

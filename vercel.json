@@ -9,8 +9,8 @@
   "routes": [
     {
       "src": "\/(.*)",
-      "dest": "/frontend/dist/$1"
+      "dest": "/dist/$1"
     }
   ],
-  "outputDirectory": "frontend/dist"
+  "outputDirectory": "dist"
 }

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 170" role="img" aria-label="Análisis tributario">
+  <rect width="280" height="170" rx="20" fill="#0a1025" />
+  <path d="M60 40h160v90H60z" fill="#1b2341" stroke="#3d4c79" stroke-width="2" />
+  <path d="M85 70h110" stroke="#4fd1c5" stroke-width="6" stroke-linecap="round" />
+  <path d="M85 90h90" stroke="#ff7aac" stroke-width="6" stroke-linecap="round" />
+  <path d="M85 110h70" stroke="#f6f59d" stroke-width="6" stroke-linecap="round" />
+  <circle cx="220" cy="60" r="18" fill="#4fd1c5" />
+  <text x="220" y="66" font-family="system-ui, sans-serif" font-size="14" fill="#0a0f17" font-weight="700" text-anchor="middle">
+    %
+  </text>
+</svg>

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="GuruSoft">
+  <rect width="120" height="120" rx="20" fill="#2d2d2d" />
+  <circle cx="60" cy="60" r="30" fill="#ffcc00" />
+  <path d="M50 47h20v26H50z" fill="#2d2d2d" />
+</svg>

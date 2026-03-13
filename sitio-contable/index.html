@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Estudio Contable Profesional</title>
+    
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tu CSS -->
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+    <!-- Header con navegación -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-calculator"></i> ContApp
+                </a>
+                
+                <!-- Botón menú móvil -->
+                <button class="menu-toggle" id="menuToggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <!-- Menú de navegación -->
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Sección Inicio -->
+        <section id="inicio" class="hero">
+            <div class="container">
+                <h1>Soluciones Contables para tu Empresa</h1>
+                <p>Más de 10 años de experiencia asesorando negocios en Venezuela</p>
+                <a href="#contacto" class="btn btn-primary">Solicita una consulta</a>
+            </div>
+        </section>
+
+        <!-- Sección Servicios -->
+        <section id="servicios" class="servicios">
+            <div class="container">
+                <h2>Nuestros Servicios</h2>
+                <div class="servicios-grid" id="serviciosContainer">
+                    <!-- Los servicios se cargarán desde Supabase -->
+                    <div class="loader">Cargando servicios...</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Nosotros -->
+        <section id="nosotros" class="nosotros">
+            <div class="container">
+                <h2>Sobre Nosotros</h2>
+                <div class="nosotros-content">
+                    <div class="nosotros-texto">
+                        <p>Somos un equipo de contadores públicos especializados en asesoría empresarial. Trabajamos con pequeñas, medianas y grandes empresas, así como con profesionales independientes.</p>
+                        <p>Nuestro compromiso es ofrecer soluciones personalizadas que impulsen el crecimiento financiero de nuestros clientes.</p>
+                    </div>
+                    <div class="nosotros-stats">
+                        <div class="stat">
+                            <span class="stat-numero">+200</span>
+                            <span class="stat-label">Clientes satisfechos</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-numero">10</span>
+                            <span class="stat-label">Años de experiencia</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección Contacto -->
+        <section id="contacto" class="contacto">
+            <div class="container">
+                <h2>Contáctanos</h2>
+                <div class="contacto-grid">
+                    <div class="contacto-info">
+                        <h3>Información de contacto</h3>
+                        <p><i class="fas fa-phone"></i> +58 424 1234567</p>
+                        <p><i class="fab fa-whatsapp"></i> +58 414 7654321</p>
+                        <p><i class="fas fa-envelope"></i> info@contapp.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> Caracas, Venezuela</p>
+                    </div>
+                    
+                    <form class="contacto-form" id="contactForm">
+                        <h3>Envíanos un mensaje</h3>
+                        <div class="form-group">
+                            <input type="text" id="nombre" placeholder="Tu nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" placeholder="Tu email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="telefono" placeholder="Tu teléfono">
+                        </div>
+                        <div class="form-group">
+                            <textarea id="mensaje" placeholder="Tu mensaje" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 ContApp. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/config.js"></script>
+    <script src="js/supabase.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

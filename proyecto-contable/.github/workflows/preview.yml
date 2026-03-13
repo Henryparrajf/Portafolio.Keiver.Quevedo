@@ -1,0 +1,31 @@
+# .github/workflows/preview.yml - Preview deployments for PRs
+name: Deploy Preview
+
+on:
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  preview:
+    name: 🚀 Deploy Preview
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Create config from example
+        run: |
+          cp js/config.example.js js/config.js
+          sed -i "s|your_supabase_url_here|${{ secrets.SUPABASE_URL }}|g" js/config.js
+          sed -i "s|your_supabase_anon_key_here|${{ secrets.SUPABASE_ANON_KEY }}|g" js/config.js
+      
+      - name: Deploy preview to Netlify
+        uses: nwtgck/actions-netlify@v2.0
+        with:
+          publish-dir: './'
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Preview PR #${{ github.event.pull_request.number }}"
+          alias: pr-${{ github.event.pull_request.number }}
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}

@@ -1,0 +1,6 @@
+[build]
+  publish = "./"
+  command = "echo Building..."
+
+[dev]
+  command = "live-server"

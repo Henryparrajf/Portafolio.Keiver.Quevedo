@@ -1,0 +1,25 @@
+.gitignore - Archivos que NO se suben a GitHub                                                # .gitignore - SEGURIDAD: Nunca subir credenciales
+
+# Configuración sensible
+js/config.js
+.env
+.env.local
+.env.production
+
+# Dependencias
+node_modules/
+package-lock.json
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="SIIGO">
+  <rect width="120" height="120" rx="24" fill="#0033a0" />
+  <path d="M40 60h40v12H40z" fill="#fff" />
+  <path d="M40 44h26v10H40z" fill="#fff" opacity="0.7" />
+  <path d="M40 76h20v10H40z" fill="#fff" opacity="0.7" />
+</svg>

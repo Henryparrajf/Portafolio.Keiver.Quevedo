@@ -1,0 +1,19 @@
+{
+  "name": "proyecto-contable",
+  "version": "1.0.0",
+  "description": "Sitio web para estudio contable con Supabase",
+  "scripts": {
+    "dev": "npx live-server --port=3000",
+    "lint": "eslint js/**/*.js --ignore-pattern 'js/config.js'",
+    "security-check": "npx secretlint **/*",
+    "precommit": "npm run lint && npm run security-check",
+    "build": "echo 'No build step required'"
+  },
+  "devDependencies": {
+    "eslint": "^8.0.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.0",
+    "secretlint": "^7.0.0",
+    "live-server": "^1.2.0"
+  }
+}

@@ -7,7 +7,7 @@ export default defineConfig({
     port: 5173
   },
   build: {
-    // Build output goes to the repo root so Vercel can serve it consistently
-    outDir: '../dist'
+    outDir: '../dist',
+    emptyOutDir: true
   }
 });

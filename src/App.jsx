@@ -15,6 +15,7 @@ import {
   BarChart,
   Handshake,
   ChevronDown,
+  Mail,
 } from 'lucide-react';
 import pulseAnimation from './animations/pulse.json';
 import CompanyStrip from './components/CompanyStrip.jsx';
@@ -203,6 +204,7 @@ const faqs = [
 export default function App() {
   const [theme, setTheme] = useState('dark');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubscribing, setIsSubscribing] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [openFaq, setOpenFaq] = useState(null);
   const [countersStarted, setCountersStarted] = useState(false);
@@ -339,6 +341,43 @@ export default function App() {
   const trackEvent = (eventName, params = {}) => {
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', eventName, params);
+    }
+  };
+
+  const handleNewsletterSubmit = async (event) => {
+    event.preventDefault();
+    
+    if (!supabase) {
+      alert('⚠️ El sistema de newsletter no está disponible temporalmente.\n\nPor favor, escríbeme directamente a keiver30@gmail.com para recibir tips contables.');
+      return;
+    }
+    
+    setIsSubscribing(true);
+    const formData = new FormData(event.target);
+    const email = formData.get('newsletter-email');
+
+    try {
+      const { error } = await supabase
+        .from('newsletter_subscribers')
+        .insert([{ email: email.trim() }]);
+
+      if (error) {
+        if (error.code === '23505') { // Duplicate key error
+          alert('✅ Ya estás suscrito al newsletter.\n\nRecibirás tips contables semanales en tu email.');
+        } else {
+          throw error;
+        }
+      } else {
+        alert('✅ ¡Suscripción exitosa!\n\nRecibirás tips contables y actualizaciones semanales en tu email.');
+        trackEvent('newsletter_subscribe', { event_category: 'engagement', event_label: 'newsletter_form' });
+      }
+      
+      event.target.reset();
+    } catch (error) {
+      console.error('Error al suscribir:', error);
+      alert('❌ Error al suscribirse.\n\nPor favor, escríbeme a keiver30@gmail.com para agregarte manualmente.');
+    } finally {
+      setIsSubscribing(false);
     }
   };
 
@@ -679,6 +718,40 @@ export default function App() {
                 </div>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* ===== NEWSLETTER ===== */}
+        <section className="section section--newsletter">
+          <div className="newsletter">
+            <div className="newsletter__content">
+              <div className="newsletter__icon">
+                <Mail size={32} strokeWidth={1.5} />
+              </div>
+              <div className="newsletter__text">
+                <h2>Tips contables semanales</h2>
+                <p>Recibe consejos prácticos sobre automatización, NIIF, optimización tributaria y las últimas tendencias en contabilidad digital.</p>
+              </div>
+            </div>
+            <form className="newsletter__form" onSubmit={handleNewsletterSubmit}>
+              <input
+                type="email"
+                name="newsletter-email"
+                placeholder="tu@email.com"
+                className="newsletter__input"
+                required
+              />
+              <button
+                type="submit"
+                className="btn btn-primary newsletter__btn"
+                disabled={isSubscribing}
+              >
+                {isSubscribing ? 'Suscribiendo...' : 'Suscribirme gratis'}
+              </button>
+            </form>
+            <p className="newsletter__disclaimer">
+              Sin spam. Cancela cuando quieras. Solo contenido de valor sobre contabilidad moderna.
+            </p>
           </div>
         </section>
 

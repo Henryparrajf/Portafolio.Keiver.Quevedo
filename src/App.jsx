@@ -120,6 +120,7 @@ const testimonials = [
 export default function App() {
   const [theme, setTheme] = useState('dark');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const heroRef = useScrollReveal();
   const servicesRef = useScrollReveal();
   const projectsRef = useScrollReveal();
@@ -134,7 +135,16 @@ export default function App() {
     document.documentElement.dataset.theme = theme;
   }, [theme]);
 
+  // Cerrar menú al hacer scroll
+  useEffect(() => {
+    const handleScroll = () => setMenuOpen(false);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const toggleTheme = () => setTheme((t) => (t === 'dark' ? 'light' : 'dark'));
+  const toggleMenu = () => setMenuOpen((o) => !o);
+  const closeMenu = () => setMenuOpen(false);
 
   const handleContactSubmit = async (event) => {
     event.preventDefault();
@@ -204,20 +214,55 @@ export default function App() {
   return (
     <div className="app">
       <header className="topbar">
-        <a className="brand" href="#hero">
+        <a className="brand" href="#hero" onClick={closeMenu}>
           Keiver&nbsp;Quevedo
         </a>
-        <nav className="nav">
+
+        {/* Nav desktop */}
+        <nav className="nav nav--desktop">
           <a href="#servicios">Servicios</a>
           <a href="#proyectos">Proyectos</a>
           <a href="#sobre-mi">Sobre mí</a>
           <a href="#testimonios">Testimonios</a>
           <a href="#contacto">Contacto</a>
         </nav>
-        <button className="btn-ghost" onClick={toggleTheme} aria-label="Alternar tema">
-          {theme === 'dark' ? '🌙' : '☀️'}
-        </button>
+
+        <div className="topbar__right">
+          <button className="btn-ghost" onClick={toggleTheme} aria-label="Alternar tema">
+            {theme === 'dark' ? '🌙' : '☀️'}
+          </button>
+
+          {/* Botón hamburguesa */}
+          <button
+            className={`hamburger ${menuOpen ? 'hamburger--open' : ''}`}
+            onClick={toggleMenu}
+            aria-label="Abrir menú"
+            aria-expanded={menuOpen}
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+
+        {/* Nav móvil desplegable */}
+        <nav className={`nav nav--mobile ${menuOpen ? 'nav--mobile-open' : ''}`}>
+          <a href="#servicios" onClick={closeMenu}>Servicios</a>
+          <a href="#proyectos" onClick={closeMenu}>Proyectos</a>
+          <a href="#sobre-mi" onClick={closeMenu}>Sobre mí</a>
+          <a href="#habilidades" onClick={closeMenu}>Habilidades</a>
+          <a href="#testimonios" onClick={closeMenu}>Testimonios</a>
+          <a href="#contacto" onClick={closeMenu}>Contacto</a>
+          <a className="btn btn-primary nav__cta" href="#contacto" onClick={closeMenu}>
+            Hablemos
+          </a>
+        </nav>
       </header>
+
+      {/* Overlay para cerrar menú */}
+      {menuOpen && (
+        <div className="nav-overlay" onClick={closeMenu} aria-hidden="true" />
+      )}
 
       {/* Botón flotante de WhatsApp */}
       <a

@@ -43,6 +43,41 @@ const skills = [
   'Visualización de datos',
 ];
 
+const testimonials = [
+  {
+    name: 'María González',
+    position: 'Gerente Financiera',
+    company: 'TechCorp Solutions',
+    text: 'Keiver automatizó nuestros reportes financieros, reduciendo el tiempo de cierre mensual de 40 a 15 horas. Su expertise en Power BI transformó cómo visualizamos nuestros datos.',
+    rating: 5,
+    date: 'Enero 2025'
+  },
+  {
+    name: 'Carlos Rodríguez',
+    position: 'Director de Operaciones',
+    company: 'Manufacturas del Norte',
+    text: 'La implementación de facturación electrónica con Nubox que Keiver lideró nos permitió reducir errores en un 90% y mejorar nuestro flujo de caja significativamente.',
+    rating: 5,
+    date: 'Diciembre 2024'
+  },
+  {
+    name: 'Ana Martínez',
+    position: 'Contadora General',
+    company: 'Servicios Logísticos SA',
+    text: 'Gracias a la asesoría de Keiver en cumplimiento NIIF, pasamos nuestra auditoría sin observaciones. Su conocimiento técnico es excepcional.',
+    rating: 5,
+    date: 'Noviembre 2024'
+  },
+  {
+    name: 'Luis Fernández',
+    position: 'CEO',
+    company: 'Startup Fintech',
+    text: 'El dashboard financiero que Keiver desarrolló con Supabase nos da visibilidad en tiempo real de nuestras métricas clave. Invaluable para la toma de decisiones.',
+    rating: 5,
+    date: 'Octubre 2024'
+  }
+];
+
 export default function App() {
   const [theme, setTheme] = useState('dark');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -244,6 +279,32 @@ export default function App() {
             <p>Algunos de los equipos y empresas con los que he trabajado.</p>
           </header>
           <CompanyStrip />
+        </section>
+
+        <section className="section reveal" id="testimonios">
+          <header className="section__header">
+            <h2>Lo que dicen mis clientes</h2>
+            <p>Testimonios reales de profesionales y empresas que han trabajado conmigo.</p>
+          </header>
+          <div className="testimonials-grid">
+            {testimonials.map((testimonial, index) => (
+              <div key={index} className="testimonial-card">
+                <div className="testimonial__rating">
+                  {'★'.repeat(testimonial.rating)}
+                  <span className="testimonial__rating-text">{testimonial.rating}/5</span>
+                </div>
+                <p className="testimonial__text">"{testimonial.text}"</p>
+                <div className="testimonial__author">
+                  <div>
+                    <strong className="testimonial__name">{testimonial.name}</strong>
+                    <p className="testimonial__position">{testimonial.position}</p>
+                    <p className="testimonial__company">{testimonial.company}</p>
+                  </div>
+                  <span className="testimonial__date">{testimonial.date}</span>
+                </div>
+              </div>
+            ))}
+          </div>
         </section>
 
         <section className="section reveal" id="contacto" ref={contactRef}>

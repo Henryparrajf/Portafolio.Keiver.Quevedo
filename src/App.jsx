@@ -16,6 +16,9 @@ import {
   Handshake,
   ChevronDown,
   Mail,
+  Calendar,
+  Clock,
+  ArrowRight,
 } from 'lucide-react';
 import pulseAnimation from './animations/pulse.json';
 import CompanyStrip from './components/CompanyStrip.jsx';
@@ -201,6 +204,69 @@ const faqs = [
   },
 ];
 
+const blogPosts = [
+  {
+    id: 1,
+    title: 'Automatización Contable con IA: Guía Completa 2026',
+    excerpt: 'Descubre cómo implementar inteligencia artificial en tus procesos contables para reducir errores y ahorrar tiempo. Casos prácticos y herramientas recomendadas.',
+    date: '2026-03-10',
+    readTime: '8 min',
+    category: 'Automatización',
+    tags: ['IA', 'Automatización', 'Eficiencia'],
+    featured: true,
+  },
+  {
+    id: 2,
+    title: 'NIIF 2026: Cambios Clave que Debes Conocer',
+    excerpt: 'Análisis detallado de las actualizaciones más importantes en las Normas Internacionales de Información Financiera para este año.',
+    date: '2026-03-05',
+    readTime: '6 min',
+    category: 'Normativa',
+    tags: ['NIIF', 'Compliance', 'Regulación'],
+    featured: true,
+  },
+  {
+    id: 3,
+    title: 'Power BI para Contadores: Dashboard Financiero en 30 Minutos',
+    excerpt: 'Tutorial paso a paso para crear tu primer dashboard financiero profesional usando Power BI. Incluye plantilla descargable.',
+    date: '2026-02-28',
+    readTime: '12 min',
+    category: 'Herramientas',
+    tags: ['Power BI', 'Dashboards', 'Visualización'],
+    featured: false,
+  },
+  {
+    id: 4,
+    title: 'Facturación Electrónica: Errores Comunes y Cómo Evitarlos',
+    excerpt: 'Los 10 errores más frecuentes en la implementación de facturación electrónica y las mejores prácticas para prevenirlos.',
+    date: '2026-02-20',
+    readTime: '5 min',
+    category: 'Facturación',
+    tags: ['Facturación Electrónica', 'Errores', 'Mejores Prácticas'],
+    featured: false,
+  },
+  {
+    id: 5,
+    title: 'Migración a la Nube: Supabase vs. Otras Alternativas',
+    excerpt: 'Comparativa completa de plataformas cloud para contadores. Ventajas, desventajas y casos de uso de cada opción.',
+    date: '2026-02-15',
+    readTime: '10 min',
+    category: 'Tecnología',
+    tags: ['Cloud', 'Supabase', 'Migración'],
+    featured: false,
+  },
+  {
+    id: 6,
+    title: 'Optimización Tributaria: 7 Estrategias Legales para PyMEs',
+    excerpt: 'Estrategias probadas para reducir la carga fiscal de pequeñas y medianas empresas dentro del marco legal vigente.',
+    date: '2026-02-10',
+    readTime: '7 min',
+    category: 'Tributaria',
+    tags: ['Optimización', 'PyMEs', 'Estrategias'],
+    featured: false,
+  },
+];
+
 export default function App() {
   const [theme, setTheme] = useState('dark');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -218,6 +284,7 @@ export default function App() {
   const aboutRef = useScrollReveal();
   const processRef = useScrollReveal();
   const faqRef = useScrollReveal();
+  const blogRef = useScrollReveal();
   const contactRef = useScrollReveal();
 
   useScrollParallax();
@@ -718,6 +785,106 @@ export default function App() {
                 </div>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* ===== BLOG ===== */}
+        <section className="section reveal" id="blog" ref={blogRef}>
+          <header className="section__header">
+            <h2>Blog contable</h2>
+            <p>Artículos, guías y análisis sobre contabilidad moderna, automatización y mejores prácticas del sector.</p>
+          </header>
+          
+          {/* Artículos destacados */}
+          <div className="blog__featured">
+            <h3 className="blog__section-title">Artículos destacados</h3>
+            <div className="blog__featured-grid">
+              {blogPosts.filter(post => post.featured).map((post) => (
+                <article key={post.id} className="blog-card blog-card--featured">
+                  <div className="blog-card__meta">
+                    <span className="blog-card__category">{post.category}</span>
+                    <div className="blog-card__date">
+                      <Calendar size={14} />
+                      <span>{new Date(post.date).toLocaleDateString('es-ES', { 
+                        year: 'numeric', 
+                        month: 'long', 
+                        day: 'numeric' 
+                      })}</span>
+                    </div>
+                    <div className="blog-card__read-time">
+                      <Clock size={14} />
+                      <span>{post.readTime}</span>
+                    </div>
+                  </div>
+                  <h3 className="blog-card__title">{post.title}</h3>
+                  <p className="blog-card__excerpt">{post.excerpt}</p>
+                  <div className="blog-card__tags">
+                    {post.tags.map((tag) => (
+                      <span key={tag} className="blog-card__tag">{tag}</span>
+                    ))}
+                  </div>
+                  <button 
+                    className="blog-card__cta"
+                    onClick={() => {
+                      trackEvent('blog_click', { event_category: 'content', event_label: post.title });
+                      alert(`📖 Artículo: "${post.title}"\n\n📧 Para leer el artículo completo, escríbeme a keiver30@gmail.com\n\n💡 También puedes suscribirte al newsletter para recibir todos los artículos directamente en tu email.`);
+                    }}
+                  >
+                    Leer artículo <ArrowRight size={16} />
+                  </button>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          {/* Más artículos */}
+          <div className="blog__more">
+            <h3 className="blog__section-title">Más artículos</h3>
+            <div className="blog__grid">
+              {blogPosts.filter(post => !post.featured).map((post) => (
+                <article key={post.id} className="blog-card">
+                  <div className="blog-card__meta">
+                    <span className="blog-card__category">{post.category}</span>
+                    <div className="blog-card__date">
+                      <Calendar size={14} />
+                      <span>{new Date(post.date).toLocaleDateString('es-ES', { 
+                        month: 'short', 
+                        day: 'numeric' 
+                      })}</span>
+                    </div>
+                    <div className="blog-card__read-time">
+                      <Clock size={14} />
+                      <span>{post.readTime}</span>
+                    </div>
+                  </div>
+                  <h4 className="blog-card__title">{post.title}</h4>
+                  <p className="blog-card__excerpt">{post.excerpt}</p>
+                  <div className="blog-card__tags">
+                    {post.tags.slice(0, 2).map((tag) => (
+                      <span key={tag} className="blog-card__tag">{tag}</span>
+                    ))}
+                  </div>
+                  <button 
+                    className="blog-card__cta"
+                    onClick={() => {
+                      trackEvent('blog_click', { event_category: 'content', event_label: post.title });
+                      alert(`📖 Artículo: "${post.title}"\n\n📧 Para leer el artículo completo, escríbeme a keiver30@gmail.com\n\n💡 También puedes suscribirte al newsletter para recibir todos los artículos.`);
+                    }}
+                  >
+                    Leer más <ArrowRight size={14} />
+                  </button>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          {/* CTA del blog */}
+          <div className="blog__cta">
+            <h3>¿Quieres más contenido como este?</h3>
+            <p>Suscríbete al newsletter y recibe artículos exclusivos, guías prácticas y análisis del sector contable.</p>
+            <a className="btn btn-primary" href="#newsletter">
+              Suscribirme al newsletter
+            </a>
           </div>
         </section>
 

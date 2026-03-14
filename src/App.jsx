@@ -7,6 +7,7 @@ import ProjectCard from './components/ProjectCard.jsx';
 import SkillBadge from './components/SkillBadge.jsx';
 import useScrollReveal from './hooks/useScrollReveal.jsx';
 import useScrollParallax from './hooks/useScrollParallax.jsx';
+import { supabase } from './lib/supabase.js';
 
 const version = '1.0.0';
 
@@ -44,6 +45,7 @@ const skills = [
 
 export default function App() {
   const [theme, setTheme] = useState('dark');
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const heroRef = useScrollReveal();
   const projectsRef = useScrollReveal();
   const galleryRef = useScrollReveal();
@@ -57,6 +59,38 @@ export default function App() {
   }, [theme]);
 
   const toggleTheme = () => setTheme((t) => (t === 'dark' ? 'light' : 'dark'));
+
+  const handleContactSubmit = async (event) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+
+    const formData = new FormData(event.target);
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const message = formData.get('message');
+
+    try {
+      const { data, error } = await supabase
+        .from('contacts')
+        .insert([
+          {
+            name: name,
+            email: email,
+            message: message
+          }
+        ]);
+
+      if (error) throw error;
+
+      alert('¡Mensaje enviado con éxito! Te contactaré pronto a través de keiver30@gmail.com');
+      event.target.reset();
+    } catch (error) {
+      console.error('Error al enviar mensaje:', error);
+      alert('Hubo un error al enviar el mensaje. Por favor, intenta de nuevo o escríbeme directamente a keiver30@gmail.com');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const whatsappNumber = '584126722754'; // Número sin espacios ni símbolos
   const whatsappMessage = encodeURIComponent('Hola Keiver, me gustaría conversar sobre tus servicios de asesoría contable.');
@@ -200,10 +234,7 @@ export default function App() {
           <div className="contact-grid">
             <form
               className="form"
-              onSubmit={(event) => {
-                event.preventDefault();
-                alert('Gracias por tu mensaje. Reemplaza este handler con tu integración de correo o Supabase.');
-              }}
+              onSubmit={handleContactSubmit}
             >
               <label className="form__label">
                 Nombre
@@ -217,8 +248,8 @@ export default function App() {
                 Mensaje
                 <textarea className="form__input" name="message" placeholder="¿En qué te puedo ayudar?" rows="5" required />
               </label>
-              <button className="btn btn-primary" type="submit">
-                Enviar mensaje
+              <button className="btn btn-primary" type="submit" disabled={isSubmitting}>
+                {isSubmitting ? 'Enviando...' : 'Enviar mensaje'}
               </button>
             </form>
             <div className="contact__aside">
@@ -247,18 +278,18 @@ export default function App() {
         <footer className="footer">
           <div className="footer__info">
             <div className="footer__avatar">
-              <img src="/desarollador.png" alt="Desarrollado por Full Stack Developer" loading="lazy" />
+              <img src="/desarollador.png" alt="Henry Parra - Full Stack Developer" loading="lazy" />
             </div>
             <div>
-              <p className="footer__name">Keiver Quevedo</p>
+              <p className="footer__name">Henry Parra</p>
               <p className="footer__meta">
-                Portafolio SPA • versión <span className="footer__version">{version}</span>
+                Full Stack Developer  • versión <span className="footer__version">{version}</span>
               </p>
             </div>
           </div>
 
-          <p className="footer__credits">Desarrollado por Full Stack Developer • Desplegado en Vercel</p>
-          <p className="footer__small">© 2026 Keiver Quevedo. Todos los derechos reservados.</p>
+          <p className="footer__credits">Desarrollado por Henry Parra - Full Stack Developer</p>
+          <p className="footer__small">© 2026 Henry Parra. Todos los derechos reservados.</p>
         </footer>
       </main>
     </div>

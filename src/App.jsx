@@ -9,6 +9,12 @@ import {
   Cloud,
   Award,
   CheckCircle,
+  Search,
+  ClipboardList,
+  Wrench,
+  BarChart,
+  Handshake,
+  ChevronDown,
 } from 'lucide-react';
 import pulseAnimation from './animations/pulse.json';
 import CompanyStrip from './components/CompanyStrip.jsx';
@@ -127,16 +133,89 @@ const testimonials = [
   }
 ];
 
+const stats = [
+  { value: 10, suffix: '+', label: 'Años de experiencia' },
+  { value: 50, suffix: '+', label: 'Clientes atendidos' },
+  { value: 30, suffix: '+', label: 'Proyectos completados' },
+  { value: 60, suffix: '%', label: 'Reducción de tiempo promedio' },
+];
+
+const process = [
+  {
+    icon: Search,
+    step: '01',
+    title: 'Diagnóstico',
+    description: 'Analizo los procesos actuales de tu empresa para identificar ineficiencias, riesgos y oportunidades de mejora.',
+  },
+  {
+    icon: ClipboardList,
+    step: '02',
+    title: 'Planificación',
+    description: 'Diseño un plan de acción personalizado con objetivos claros, plazos definidos y métricas de éxito.',
+  },
+  {
+    icon: Wrench,
+    step: '03',
+    title: 'Implementación',
+    description: 'Ejecuto las soluciones acordadas: automatizaciones, dashboards, integraciones o asesoría tributaria.',
+  },
+  {
+    icon: BarChart,
+    step: '04',
+    title: 'Seguimiento',
+    description: 'Monitoreo los resultados, ajusto lo necesario y entrego reportes de avance para garantizar el impacto.',
+  },
+  {
+    icon: Handshake,
+    step: '05',
+    title: 'Soporte continuo',
+    description: 'Ofrezco acompañamiento post-implementación para resolver dudas, actualizar procesos y escalar soluciones.',
+  },
+];
+
+const faqs = [
+  {
+    question: '¿Cuánto tiempo toma implementar una automatización contable?',
+    answer: 'Depende de la complejidad del proceso. Un reporte automatizado básico puede estar listo en 1-2 semanas. Proyectos más complejos con integración de múltiples sistemas pueden tomar 4-8 semanas.',
+  },
+  {
+    question: '¿Trabajo con empresas de cualquier tamaño?',
+    answer: 'Sí. He trabajado con freelancers, PyMEs y empresas medianas. Las soluciones se adaptan al tamaño y presupuesto de cada cliente.',
+  },
+  {
+    question: '¿Qué plataformas de facturación electrónica manejas?',
+    answer: 'Trabajo principalmente con Nubox y GuruSoft, pero también tengo experiencia con SIIGO y otras plataformas de facturación electrónica según la región del cliente.',
+  },
+  {
+    question: '¿Puedo contratar solo asesoría tributaria sin automatización?',
+    answer: 'Por supuesto. Cada servicio es independiente. Puedes contratar solo asesoría NIIF, solo dashboards en Power BI, o cualquier combinación que necesites.',
+  },
+  {
+    question: '¿Cómo se manejan los datos confidenciales de mi empresa?',
+    answer: 'Trabajo bajo acuerdos de confidencialidad (NDA). Los datos se manejan con cifrado, acceso restringido y se eliminan al finalizar el proyecto si así lo requieres.',
+  },
+  {
+    question: '¿Ofreces soporte después de entregar el proyecto?',
+    answer: 'Sí. Incluyo un período de soporte post-entrega y ofrezco planes de mantenimiento mensual para garantizar que las soluciones sigan funcionando correctamente.',
+  },
+];
+
 export default function App() {
   const [theme, setTheme] = useState('dark');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [openFaq, setOpenFaq] = useState(null);
+  const [countersStarted, setCountersStarted] = useState(false);
+  const [counts, setCounts] = useState(stats.map(() => 0));
+  const statsRef = useScrollReveal();
   const heroRef = useScrollReveal();
   const servicesRef = useScrollReveal();
   const projectsRef = useScrollReveal();
   const galleryRef = useScrollReveal();
   const skillsRef = useScrollReveal();
   const aboutRef = useScrollReveal();
+  const processRef = useScrollReveal();
+  const faqRef = useScrollReveal();
   const contactRef = useScrollReveal();
 
   useScrollParallax();
@@ -155,6 +234,40 @@ export default function App() {
   const toggleTheme = () => setTheme((t) => (t === 'dark' ? 'light' : 'dark'));
   const toggleMenu = () => setMenuOpen((o) => !o);
   const closeMenu = () => setMenuOpen(false);
+
+  // Contador animado al hacer scroll
+  useEffect(() => {
+    if (!statsRef.current || countersStarted) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setCountersStarted(true);
+          stats.forEach((stat, i) => {
+            const duration = 1800;
+            const steps = 60;
+            const increment = stat.value / steps;
+            let current = 0;
+            const timer = setInterval(() => {
+              current += increment;
+              if (current >= stat.value) {
+                current = stat.value;
+                clearInterval(timer);
+              }
+              setCounts((prev) => {
+                const next = [...prev];
+                next[i] = Math.floor(current);
+                return next;
+              });
+            }, duration / steps);
+          });
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(statsRef.current);
+    return () => observer.disconnect();
+  }, [countersStarted, statsRef]);
 
   const handleContactSubmit = async (event) => {
     event.preventDefault();
@@ -462,6 +575,76 @@ export default function App() {
             <p>Algunos de los equipos y empresas con los que he trabajado.</p>
           </header>
           <CompanyStrip />
+        </section>
+
+        {/* ===== ESTADÍSTICAS ANIMADAS ===== */}
+        <section className="section section--stats" ref={statsRef}>
+          <div className="stats-grid">
+            {stats.map((stat, i) => (
+              <div key={stat.label} className="stat-counter">
+                <span className="stat-counter__value">
+                  {counts[i]}{stat.suffix}
+                </span>
+                <span className="stat-counter__label">{stat.label}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* ===== PROCESO DE TRABAJO ===== */}
+        <section className="section reveal" id="proceso" ref={processRef}>
+          <header className="section__header">
+            <h2>Cómo trabajo</h2>
+            <p>Un proceso claro y estructurado para garantizar resultados medibles en cada proyecto.</p>
+          </header>
+          <div className="process-list">
+            {process.map((step, i) => {
+              const Icon = step.icon;
+              return (
+                <div key={step.step} className="process-item">
+                  <div className="process-item__left">
+                    <div className="process-item__icon">
+                      <Icon size={22} strokeWidth={1.5} />
+                    </div>
+                    {i < process.length - 1 && <div className="process-item__line" />}
+                  </div>
+                  <div className="process-item__content">
+                    <span className="process-item__step">Paso {step.step}</span>
+                    <h3 className="process-item__title">{step.title}</h3>
+                    <p className="process-item__desc">{step.description}</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* ===== FAQ ===== */}
+        <section className="section reveal" id="faq" ref={faqRef}>
+          <header className="section__header">
+            <h2>Preguntas frecuentes</h2>
+            <p>Respuestas a las dudas más comunes antes de empezar a trabajar juntos.</p>
+          </header>
+          <div className="faq-list">
+            {faqs.map((faq, i) => (
+              <div
+                key={i}
+                className={`faq-item ${openFaq === i ? 'faq-item--open' : ''}`}
+              >
+                <button
+                  className="faq-item__question"
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  aria-expanded={openFaq === i}
+                >
+                  <span>{faq.question}</span>
+                  <ChevronDown className="faq-item__chevron" size={20} />
+                </button>
+                <div className="faq-item__answer">
+                  <p>{faq.answer}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </section>
 
         <section className="section reveal" id="testimonios">

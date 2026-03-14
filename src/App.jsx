@@ -43,6 +43,45 @@ const skills = [
   'Visualización de datos',
 ];
 
+const services = [
+  {
+    icon: '📊',
+    title: 'Automatización Contable',
+    description: 'Diseño pipelines automáticos para reportes financieros, eliminando tareas manuales repetitivas y reduciendo errores hasta un 90%.',
+    items: ['Reportes automáticos', 'Dashboards en tiempo real', 'Alertas de desviación', 'Integración con ERP'],
+  },
+  {
+    icon: '🧾',
+    title: 'Asesoría Tributaria',
+    description: 'Optimización fiscal bajo normativa NIIF/NIC, cumplimiento regulatorio y simulación de escenarios para minimizar carga impositiva.',
+    items: ['Declaraciones fiscales', 'Cumplimiento NIIF', 'Simulación de escenarios', 'Auditoría preventiva'],
+  },
+  {
+    icon: '📈',
+    title: 'Dashboards Financieros',
+    description: 'Visualización de datos financieros en Power BI y Excel avanzado para toma de decisiones estratégicas en tiempo real.',
+    items: ['Power BI personalizado', 'KPIs financieros', 'Análisis de tendencias', 'Reportes ejecutivos'],
+  },
+  {
+    icon: '🤖',
+    title: 'Consultoría con IA',
+    description: 'Implementación de asistentes basados en IA para análisis financiero, detección de anomalías y predicción de flujo de caja.',
+    items: ['Análisis predictivo', 'Detección de anomalías', 'Asistente financiero IA', 'Automatización RPA'],
+  },
+  {
+    icon: '🏢',
+    title: 'Facturación Electrónica',
+    description: 'Estandarización e integración de procesos de facturación electrónica con plataformas como Nubox y GuruSoft.',
+    items: ['Integración Nubox', 'Flujos de auditoría', 'Compliance regulatorio', 'Capacitación al equipo'],
+  },
+  {
+    icon: '☁️',
+    title: 'Contabilidad en la Nube',
+    description: 'Migración y gestión de procesos contables a plataformas cloud con Supabase, garantizando acceso seguro y escalable.',
+    items: ['Migración a la nube', 'Base de datos Supabase', 'Acceso remoto seguro', 'Respaldo automático'],
+  },
+];
+
 const testimonials = [
   {
     name: 'María González',
@@ -82,9 +121,11 @@ export default function App() {
   const [theme, setTheme] = useState('dark');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const heroRef = useScrollReveal();
+  const servicesRef = useScrollReveal();
   const projectsRef = useScrollReveal();
   const galleryRef = useScrollReveal();
   const skillsRef = useScrollReveal();
+  const aboutRef = useScrollReveal();
   const contactRef = useScrollReveal();
 
   useScrollParallax();
@@ -167,8 +208,10 @@ export default function App() {
           Keiver&nbsp;Quevedo
         </a>
         <nav className="nav">
+          <a href="#servicios">Servicios</a>
           <a href="#proyectos">Proyectos</a>
-          <a href="#habilidades">Habilidades</a>
+          <a href="#sobre-mi">Sobre mí</a>
+          <a href="#testimonios">Testimonios</a>
           <a href="#contacto">Contacto</a>
         </nav>
         <button className="btn-ghost" onClick={toggleTheme} aria-label="Alternar tema">
@@ -233,6 +276,30 @@ export default function App() {
           </div>
         </section>
 
+        <section className="section reveal" id="servicios" ref={servicesRef}>
+          <header className="section__header">
+            <h2>Servicios</h2>
+            <p>Soluciones contables y financieras adaptadas a las necesidades de tu empresa.</p>
+          </header>
+          <div className="services-grid">
+            {services.map((service) => (
+              <div key={service.title} className="service-card">
+                <span className="service-card__icon">{service.icon}</span>
+                <h3 className="service-card__title">{service.title}</h3>
+                <p className="service-card__desc">{service.description}</p>
+                <ul className="service-card__list">
+                  {service.items.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+                <a className="btn btn-outline service-card__cta" href="#contacto">
+                  Solicitar servicio
+                </a>
+              </div>
+            ))}
+          </div>
+        </section>
+
         <section className="section reveal" id="proyectos" ref={projectsRef}>
           <header className="section__header">
             <h2>Casos de estudio</h2>
@@ -278,6 +345,53 @@ export default function App() {
                 <li>Opinión técnica en cumplimiento tributario</li>
                 <li>Integración con plataformas en la nube (Supabase, Nubox, GuruSoft)</li>
               </ul>
+            </div>
+          </div>
+        </section>
+
+        <section className="section reveal section--about" id="sobre-mi" ref={aboutRef}>
+          <div className="about__grid">
+            <div className="about__image">
+              <img src="/avatar.svg" alt="Keiver Quevedo - Contador" loading="lazy" />
+            </div>
+            <div className="about__content">
+              <p className="label">Sobre mí</p>
+              <h2>Contador con visión tecnológica</h2>
+              <p className="about__lead">
+                Soy Keiver Quevedo, Contador Público con más de 10 años de experiencia ayudando a empresas a transformar sus procesos financieros mediante automatización e inteligencia artificial.
+              </p>
+              <p className="about__text">
+                Mi enfoque combina el rigor técnico de la contabilidad tradicional con las herramientas modernas de análisis de datos. He trabajado con empresas de distintos sectores, implementando soluciones que reducen costos operativos y mejoran la toma de decisiones.
+              </p>
+              <div className="about__stats">
+                <div className="about__stat">
+                  <span className="about__stat-value">+10</span>
+                  <span className="about__stat-label">Años de experiencia</span>
+                </div>
+                <div className="about__stat">
+                  <span className="about__stat-value">+50</span>
+                  <span className="about__stat-label">Clientes atendidos</span>
+                </div>
+                <div className="about__stat">
+                  <span className="about__stat-value">+30</span>
+                  <span className="about__stat-label">Proyectos completados</span>
+                </div>
+                <div className="about__stat">
+                  <span className="about__stat-value">60%</span>
+                  <span className="about__stat-label">Reducción promedio de tiempo</span>
+                </div>
+              </div>
+              <div className="about__certs">
+                <h3>Formación y certificaciones</h3>
+                <ul>
+                  <li>📜 Contador Público Colegiado</li>
+                  <li>📊 Especialista en NIIF / NIC</li>
+                  <li>🤖 Certificado en Automatización RPA</li>
+                  <li>📈 Power BI Data Analyst</li>
+                  <li>☁️ Supabase & SQL Avanzado</li>
+                </ul>
+              </div>
+              <a className="btn btn-primary" href="#contacto">Trabajemos juntos</a>
             </div>
           </div>
         </section>

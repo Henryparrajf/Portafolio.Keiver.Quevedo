@@ -247,18 +247,18 @@ export default function App() {
         <footer className="footer">
           <div className="footer__info">
             <div className="footer__avatar">
-              <img src=".\frontend\public\desarollador.png" alt="Desarrollado por Full Stack Developer" loading="lazy" />
+              <img src="/desarollador.png" alt="Desarrollado por Full Stack Developer" loading="lazy" />
             </div>
             <div>
-              <p className="footer__name">Henry Parra</p>
+              <p className="footer__name">Keiver Quevedo</p>
               <p className="footer__meta">
-                Full Stack Developer • versión <span className="footer__version">{version}</span>
+                Portafolio SPA • versión <span className="footer__version">{version}</span>
               </p>
             </div>
           </div>
 
-          <p className="footer__credits">Desarrollado por Full Stack Developer </p>
-          <p className="footer__small">© 2026 Full Stack Developer • versión 1.0.0. Todos los derechos reservados.</p>
+          <p className="footer__credits">Desarrollado por Full Stack Developer • Desplegado en Vercel</p>
+          <p className="footer__small">© 2026 Keiver Quevedo. Todos los derechos reservados.</p>
         </footer>
       </main>
     </div>

@@ -37,6 +37,19 @@
     <!-- Google Search Console Verification -->
     <meta name="google-site-verification" content="InYjUQzd92WVQrCZv6Fzxr7-ZWB47Wt-0lkkKGoxYrs" />
     
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MEASUREMENT_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MEASUREMENT_ID', {
+        page_title: document.title,
+        page_location: window.location.href,
+        send_page_view: true
+      });
+    </script>
+    
     <!-- Preconnect para optimización -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://birkbiqwnojklwmgcehy.supabase.co" />

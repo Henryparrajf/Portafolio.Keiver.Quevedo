@@ -313,6 +313,7 @@ export default function App() {
       if (error) throw error;
 
       alert('✅ ¡Mensaje enviado con éxito!\n\nTe contactaré pronto a través de:\n📧 keiver30@gmail.com\n📱 WhatsApp: +58 4126722754');
+      trackEvent('form_submit', { event_category: 'contact', event_label: 'contact_form' });
       event.target.reset();
     } catch (error) {
       console.error('Error al enviar mensaje:', error);
@@ -333,6 +334,13 @@ export default function App() {
   const whatsappNumber = '584126722754'; // Número sin espacios ni símbolos
   const whatsappMessage = encodeURIComponent('Hola Keiver, me gustaría conversar sobre tus servicios de asesoría contable.');
   const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
+
+  // Helper para trackear eventos en GA4
+  const trackEvent = (eventName, params = {}) => {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('event', eventName, params);
+    }
+  };
 
   return (
     <div className="app">
@@ -394,6 +402,7 @@ export default function App() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Contactar por WhatsApp"
+        onClick={() => trackEvent('whatsapp_click', { event_category: 'contact', event_label: 'floating_button' })}
       >
         <svg
           className="whatsapp-float__icon"

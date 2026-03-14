@@ -69,14 +69,28 @@ export default function App() {
     const email = formData.get('email');
     const message = formData.get('message');
 
+    // Validación del mensaje
+    if (!message || message.trim().length < 10) {
+      alert('El mensaje debe tener al menos 10 caracteres.');
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Validación del nombre
+    if (!name || name.trim().length < 2) {
+      alert('El nombre debe tener al menos 2 caracteres.');
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
       const { data, error } = await supabase
         .from('contacts')
         .insert([
           {
-            name: name,
-            email: email,
-            message: message
+            name: name.trim(),
+            email: email.trim(),
+            message: message.trim()
           }
         ]);
 
@@ -86,7 +100,13 @@ export default function App() {
       event.target.reset();
     } catch (error) {
       console.error('Error al enviar mensaje:', error);
-      alert('Hubo un error al enviar el mensaje. Por favor, intenta de nuevo o escríbeme directamente a keiver30@gmail.com');
+      
+      // Mensajes de error más específicos
+      if (error.code === '23514') {
+        alert('Por favor verifica que:\n- El nombre tenga al menos 2 caracteres\n- El mensaje tenga al menos 10 caracteres');
+      } else {
+        alert('Hubo un error al enviar el mensaje. Por favor, intenta de nuevo o escríbeme directamente a keiver30@gmail.com');
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -238,15 +258,37 @@ export default function App() {
             >
               <label className="form__label">
                 Nombre
-                <input className="form__input" type="text" name="name" placeholder="Tu nombre" required />
+                <input 
+                  className="form__input" 
+                  type="text" 
+                  name="name" 
+                  placeholder="Tu nombre" 
+                  minLength="2"
+                  maxLength="100"
+                  required 
+                />
               </label>
               <label className="form__label">
                 Email
-                <input className="form__input" type="email" name="email" placeholder="tu@correo.com" required />
+                <input 
+                  className="form__input" 
+                  type="email" 
+                  name="email" 
+                  placeholder="tu@correo.com" 
+                  required 
+                />
               </label>
               <label className="form__label">
-                Mensaje
-                <textarea className="form__input" name="message" placeholder="¿En qué te puedo ayudar?" rows="5" required />
+                Mensaje (mínimo 10 caracteres)
+                <textarea 
+                  className="form__input" 
+                  name="message" 
+                  placeholder="¿En qué te puedo ayudar?" 
+                  rows="5" 
+                  minLength="10"
+                  maxLength="1000"
+                  required 
+                />
               </label>
               <button className="btn btn-primary" type="submit" disabled={isSubmitting}>
                 {isSubmitting ? 'Enviando...' : 'Enviar mensaje'}

@@ -97,6 +97,13 @@ export default function App() {
 
   const handleContactSubmit = async (event) => {
     event.preventDefault();
+    
+    // Verificar si Supabase está configurado
+    if (!supabase) {
+      alert('⚠️ El sistema de contacto no está disponible temporalmente.\n\nPor favor, escríbeme directamente a:\n📧 keiver30@gmail.com\n📱 WhatsApp: +58 4126722754');
+      return;
+    }
+    
     setIsSubmitting(true);
 
     const formData = new FormData(event.target);
@@ -131,7 +138,7 @@ export default function App() {
 
       if (error) throw error;
 
-      alert('¡Mensaje enviado con éxito! Te contactaré pronto a través de keiver30@gmail.com');
+      alert('✅ ¡Mensaje enviado con éxito!\n\nTe contactaré pronto a través de:\n📧 keiver30@gmail.com\n📱 WhatsApp: +58 4126722754');
       event.target.reset();
     } catch (error) {
       console.error('Error al enviar mensaje:', error);
@@ -139,8 +146,10 @@ export default function App() {
       // Mensajes de error más específicos
       if (error.code === '23514') {
         alert('Por favor verifica que:\n- El nombre tenga al menos 2 caracteres\n- El mensaje tenga al menos 10 caracteres');
+      } else if (error.code === 'PGRST116') {
+        alert('❌ Error de conexión con la base de datos.\n\nPor favor, escríbeme directamente a:\n📧 keiver30@gmail.com\n📱 WhatsApp: +58 4126722754');
       } else {
-        alert('Hubo un error al enviar el mensaje. Por favor, intenta de nuevo o escríbeme directamente a keiver30@gmail.com');
+        alert('❌ Hubo un error al enviar el mensaje.\n\nPor favor, intenta de nuevo o escríbeme directamente a:\n📧 keiver30@gmail.com\n📱 WhatsApp: +58 4126722754');
       }
     } finally {
       setIsSubmitting(false);

@@ -84,7 +84,7 @@ export default function App() {
     }
 
     try {
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from('contacts')
         .insert([
           {

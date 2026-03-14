@@ -1,0 +1,16 @@
+# robots.txt para Keiver Quevedo - Contador & Consultor
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://keiverquevedo.com/sitemap.xml
+
+# Crawl-delay para bots agresivos
+User-agent: *
+Crawl-delay: 1
+
+# Bloquear bots maliciosos conocidos
+User-agent: AhrefsBot
+User-agent: SemrushBot
+User-agent: DotBot
+Disallow: /

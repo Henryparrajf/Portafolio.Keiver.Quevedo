@@ -1396,8 +1396,22 @@ html[data-theme='light'] .testimonial__author {
 }
 
 .service-card__icon {
-  font-size: 2.2rem;
-  line-height: 1;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(255, 90, 168, 0.15), rgba(55, 211, 255, 0.15));
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-2);
+  flex-shrink: 0;
+  transition: background 280ms var(--easing), transform 280ms var(--easing);
+}
+
+.service-card:hover .service-card__icon {
+  background: linear-gradient(135deg, rgba(255, 90, 168, 0.25), rgba(55, 211, 255, 0.25));
+  transform: scale(1.08);
 }
 
 .service-card__title {
@@ -1564,6 +1578,14 @@ html[data-theme='light'] .service-card__list li {
 .about__certs li {
   font-size: 0.9rem;
   color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.about__certs li svg {
+  flex-shrink: 0;
+  color: var(--accent-2);
 }
 
 /* Tema claro - sobre mí */

@@ -1,5 +1,15 @@
 import { useEffect, useState } from 'react';
 import Lottie from 'lottie-react';
+import {
+  BarChart2,
+  FileText,
+  LineChart,
+  Bot,
+  Receipt,
+  Cloud,
+  Award,
+  CheckCircle,
+} from 'lucide-react';
 import pulseAnimation from './animations/pulse.json';
 import CompanyStrip from './components/CompanyStrip.jsx';
 import GalleryStrip from './components/GalleryStrip.jsx';
@@ -45,37 +55,37 @@ const skills = [
 
 const services = [
   {
-    icon: '📊',
+    icon: BarChart2,
     title: 'Automatización Contable',
     description: 'Diseño pipelines automáticos para reportes financieros, eliminando tareas manuales repetitivas y reduciendo errores hasta un 90%.',
     items: ['Reportes automáticos', 'Dashboards en tiempo real', 'Alertas de desviación', 'Integración con ERP'],
   },
   {
-    icon: '🧾',
+    icon: FileText,
     title: 'Asesoría Tributaria',
     description: 'Optimización fiscal bajo normativa NIIF/NIC, cumplimiento regulatorio y simulación de escenarios para minimizar carga impositiva.',
     items: ['Declaraciones fiscales', 'Cumplimiento NIIF', 'Simulación de escenarios', 'Auditoría preventiva'],
   },
   {
-    icon: '📈',
+    icon: LineChart,
     title: 'Dashboards Financieros',
     description: 'Visualización de datos financieros en Power BI y Excel avanzado para toma de decisiones estratégicas en tiempo real.',
     items: ['Power BI personalizado', 'KPIs financieros', 'Análisis de tendencias', 'Reportes ejecutivos'],
   },
   {
-    icon: '🤖',
+    icon: Bot,
     title: 'Consultoría con IA',
     description: 'Implementación de asistentes basados en IA para análisis financiero, detección de anomalías y predicción de flujo de caja.',
     items: ['Análisis predictivo', 'Detección de anomalías', 'Asistente financiero IA', 'Automatización RPA'],
   },
   {
-    icon: '🏢',
+    icon: Receipt,
     title: 'Facturación Electrónica',
     description: 'Estandarización e integración de procesos de facturación electrónica con plataformas como Nubox y GuruSoft.',
     items: ['Integración Nubox', 'Flujos de auditoría', 'Compliance regulatorio', 'Capacitación al equipo'],
   },
   {
-    icon: '☁️',
+    icon: Cloud,
     title: 'Contabilidad en la Nube',
     description: 'Migración y gestión de procesos contables a plataformas cloud con Supabase, garantizando acceso seguro y escalable.',
     items: ['Migración a la nube', 'Base de datos Supabase', 'Acceso remoto seguro', 'Respaldo automático'],
@@ -327,21 +337,26 @@ export default function App() {
             <p>Soluciones contables y financieras adaptadas a las necesidades de tu empresa.</p>
           </header>
           <div className="services-grid">
-            {services.map((service) => (
-              <div key={service.title} className="service-card">
-                <span className="service-card__icon">{service.icon}</span>
-                <h3 className="service-card__title">{service.title}</h3>
-                <p className="service-card__desc">{service.description}</p>
-                <ul className="service-card__list">
-                  {service.items.map((item) => (
-                    <li key={item}>{item}</li>
-                  ))}
-                </ul>
-                <a className="btn btn-outline service-card__cta" href="#contacto">
-                  Solicitar servicio
-                </a>
-              </div>
-            ))}
+            {services.map((service) => {
+              const Icon = service.icon;
+              return (
+                <div key={service.title} className="service-card">
+                  <div className="service-card__icon">
+                    <Icon size={28} strokeWidth={1.5} />
+                  </div>
+                  <h3 className="service-card__title">{service.title}</h3>
+                  <p className="service-card__desc">{service.description}</p>
+                  <ul className="service-card__list">
+                    {service.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                  <a className="btn btn-outline service-card__cta" href="#contacto">
+                    Solicitar servicio
+                  </a>
+                </div>
+              );
+            })}
           </div>
         </section>
 
@@ -429,11 +444,11 @@ export default function App() {
               <div className="about__certs">
                 <h3>Formación y certificaciones</h3>
                 <ul>
-                  <li>📜 Contador Público Colegiado</li>
-                  <li>📊 Especialista en NIIF / NIC</li>
-                  <li>🤖 Certificado en Automatización RPA</li>
-                  <li>📈 Power BI Data Analyst</li>
-                  <li>☁️ Supabase & SQL Avanzado</li>
+                  <li><Award size={16} /> Contador Público Colegiado</li>
+                  <li><Award size={16} /> Especialista en NIIF / NIC</li>
+                  <li><CheckCircle size={16} /> Certificado en Automatización RPA</li>
+                  <li><CheckCircle size={16} /> Power BI Data Analyst</li>
+                  <li><CheckCircle size={16} /> Supabase &amp; SQL Avanzado</li>
                 </ul>
               </div>
               <a className="btn btn-primary" href="#contacto">Trabajemos juntos</a>
